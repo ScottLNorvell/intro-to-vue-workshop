@@ -15,33 +15,39 @@
     <h2 class="title has-text-centered dividing-header">UpVote!</h2>
 
     <div class="section">
-      <article class="media">
+      <article
+        class="media"
+        v-for="submission in submissions"
+        :class="{ 'blue-border': submission.votes >= 20 }"
+        :key="submission.id">
+
         <figure class="media-left">
           <img class="image is-64x64"
-               src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/daniel-submission.png">
+               :src="submission.submissionImage">
         </figure>
         <div class="media-content">
           <div class="content">
             <p>
               <strong>
-                <a href="#" class="has-text-info">Yellow Pail</a>
-                <span class="tag is-small">#4</span>
+                <a :href="submission.url" class="has-text-info">{{submission.title}}</a>
+                <span class="tag is-small">#{{submission.id}}</span>
               </strong>
               <br>
-              On-demand sand castle construction expertise.
+              {{submission.description}}
               <br>
               <small class="is-size-7">
                 Submitted by:
                 <img class="image is-24x24"
-                     src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/daniel.jpg">
+                     :src="submission.avatar">
               </small>
             </p>
           </div>
         </div>
-        <div class="media-right">
+        <div class="media-right"
+             @click="upVote(submission)">
           <span class="icon is-small">
             <i class="fa fa-chevron-up"></i>
-            <strong class="has-text-info">10</strong>
+            <strong class="has-text-info">{{submission.votes}}</strong>
           </span>
         </div>
       </article>

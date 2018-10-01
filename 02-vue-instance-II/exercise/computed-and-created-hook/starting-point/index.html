@@ -12,20 +12,20 @@
 
 <body>
   <div id="app">
-    <div class="card">
+    <div class="card" v-for="user in reverseUsers">
       <header class="card-header">
         <p class="card-header-title">
-          Aubrey Graham
+          {{user.name}}
         </p>
       </header>
       <div class="card-content">
         <div class="content">
-          <p>OVO</p>
-          <p>Started from the bottom...</p>
+          <p>{{user.company.name}}</p>
+          <p>{{user.company.catchPhrase}}</p>
         </div>
       </div>
       <footer class="card-footer">
-        <a href="#" class="card-footer-item">aubreyg@ovo.com</a>
+        <a href="#" class="card-footer-item">{{user.email}}</a>
       </footer>
     </div>
   </div>
