@@ -20,17 +20,21 @@
 <script>
 import InputComponent from "./components/InputComponent";
 import NoteCountComponent from "./components/NoteCountComponent";
+import Bus from './bus';
 
 export default {
   name: 'App',
   data() {
     return {
-      notes: ['Static Note #1', 'Static Note #2'],
+      notes: [],
     }
   },
   components: {
     'InputComponent': InputComponent,
     'NoteCountComponent': NoteCountComponent
+  },
+  created() {
+    Bus.$on('new-note', note => this.notes.push(note));
   }
 };
 </script>
